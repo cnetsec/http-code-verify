@@ -1,15 +1,19 @@
 #!/bin/bash
 input="insert-domains-here"
-echo "---------------Verificação Iniciada-----------------"
+echo "Adicionando lista de Dominios"
+echo "."
+echo ".."
+echo "..."
+sleep 1
+echo "Analise iniciada"
+echo "."
+echo ".."
+echo "..."
+sleep 1
+echo "---------------RESULTADOS-----------------"
 while IFS= read -r line
 do
-echo ""
-echo ""
-echo ""
 echo "---------------------------------------------------------------------"
-echo "Analisando $line"
-echo "---------------------------------------------------------------------"
-echo "                  [RESULTADOS]"
 WEBSITEHTTP=$(echo "http://$line")
 WEBSITEHTTPS=$(echo "https://$line")
 HTTP=$(echo | curl -sL -w "%{http_code}\\n" $WEBSITEHTTP -o /dev/null)
