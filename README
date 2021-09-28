@@ -1,4 +1,13 @@
-Adicionar a lista de dominios insert-domains-here
+Requisitos:
+-Curl
+-Bash
+-nslookup
+
+1)Adicionar a lista de dominios insert-domains-here
+2) Acessar pasta 
 cd http-code-verify/
+3)Permissão de execução
 chmod a+x code.sh
+4)Execução do Codigo
 ./code.sh
+
