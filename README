@@ -1,0 +1,4 @@
+Adicionar a lista de dominios insert-domains-here
+cd http-code-verify/
+chmod a+x code.sh
+./code.sh
