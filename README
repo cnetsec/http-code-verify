@@ -3,9 +3,9 @@ Requisitos:
 -Bash
 -nslookup
 
-1)Adicionar a lista de dominios insert-domains-here
-2) Acessar pasta 
+1) Acessar pasta 
 cd http-code-verify/
+2)Adicionar a lista de dominios insert-domains-here
 3)Permissão de execução
 chmod a+x code.sh
 4)Execução do Codigo
