@@ -1,32 +1,24 @@
 #!/bin/bash
-#Carregado a Lista de dominios
 input="insert-domains-here"
-NOW="$(date)"
-echo ""
-echo ""
-echo "---------------Verificação Iniciada $NOW-----------------"
-#Analise linha por linha para identficar os banners
+echo "Adicionando lista de Dominios"
+echo "."
+echo ".."
+echo "..."
+sleep 1
+echo "Analise iniciada"
+echo "."
+echo ".."
+echo "..."
+sleep 1
+echo "---------------RESULTADOS-----------------"
 while IFS= read -r line
 do
-echo "[RESULTADOS $line]"
+echo "---------------------------------------------------------------------"
 WEBSITEHTTP=$(echo "http://$line")
 WEBSITEHTTPS=$(echo "https://$line")
-RESULTSERVERHTTP=$(echo | curl -s -I $WEBSITEHTTP --connect-timeout 2 | grep -e "Server: ")
-RESULTSERVERHTTPS=$(echo | curl -s -I $WEBSITEHTTPS --connect-timeout 2| grep -e "Server: ")
-#Resultados apresentados em tela e salvos em uma lista BANNER-LIST.txt
-if [ -z "$RESULTSERVERHTTP" ];
-then
-        false
-else
-        echo " Resultado de acesso em Http  $RESULTSERVERHTTP "
-        echo $WEBSITEHTTP "-" $RESULTSERVERHTTP >> BANNER-LIST.txt
-fi
-if [ -z "$RESULTSERVERHTTPS" ];
-then
-        false
-else
-        echo " Resultado de acesso em Https $RESULTSERVERHTTPS"
-        echo $WEBSITEHTTPS "-" $RESULTSERVERHTTP >> BANNER-LIST.txt
-fi
-echo ""
-done <"$input"
+HTTP=$(echo | curl -s -w "%{http_code}\\n" $WEBSITEHTTP -o /dev/null)
+HTTPS=$(echo | curl -sL -w "%{http_code}\\n" $WEBSITEHTTPS -o /dev/null)
+domain=$(echo $line | awk -F[/:] '{print $1}')
+IP=$(echo| nslookup $domain | awk '/^Address/{n++; if (n==2) {print $2}; if (n==3){print $2}; if (n==4){exit}}')
+echo "O site $line ip $IP retorna o codigo $HTTP(HTTP) e $HTTPS(HTTPS)"
+done <"$input
